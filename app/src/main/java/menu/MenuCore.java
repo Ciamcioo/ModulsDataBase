@@ -18,6 +18,7 @@ public abstract class MenuCore implements MenuInterface {
     }
 
     protected abstract void printMenu(); 
+    protected abstract void proccessAction();
 
     /**
      *  Method takes value returned by the proccess of handling user input before hiding the currssor and then poping it back. 
@@ -41,10 +42,8 @@ public abstract class MenuCore implements MenuInterface {
         switch (input){
             case 'j' -> setPointerPosition(++tmpPointerPosition);
             case 'k' -> setPointerPosition(--tmpPointerPosition); 
-            case '\n' -> { 
-                setPointerPosition(0);
-                return true; 
-            }
+            case '\n' -> { return true; } 
+
         }
         return false;
     }
@@ -68,8 +67,8 @@ public abstract class MenuCore implements MenuInterface {
         console.flush();
     }
 
-    private void showConsoleCurrsor() {
-        console.writer().print("033[?25h");
+    protected void showConsoleCurrsor() {
+        console.writer().print("\033[?25h");
         console.flush();
     }
     

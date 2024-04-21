@@ -1,6 +1,6 @@
 package menu;
 
-public interface MenuInterface {
+interface MenuInterface {
 
     public void menuRunner();
     

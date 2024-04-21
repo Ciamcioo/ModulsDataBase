@@ -17,9 +17,9 @@ public class MenuCoreTest {
         assertEquals(0, menu.getPointerPosition());
         menu.setPointerPosition(1);
         assertEquals(true, menu.menuControler('\n'));
-        assertEquals(0, menu.getPointerPosition());
-        menu.setPointerPosition(1);
-        assertEquals(false, menu.menuControler('w'));
         assertEquals(1, menu.getPointerPosition());
+        menu.setPointerPosition(2);
+        assertEquals(false, menu.menuControler('w'));
+        assertEquals(2, menu.getPointerPosition());
     } 
 }

@@ -22,3 +22,11 @@ gradle-app.setting
 
 # Ignore Gradle build output directory
 build
+
+# Ignore bin directoyr
+bin
+
+# Ignore vim files 
+.vim
+# Ignore vim swp files
+*.swp

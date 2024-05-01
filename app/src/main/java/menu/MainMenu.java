@@ -1,35 +1,8 @@
 package menu;
-import java.util.ArrayList;
+
 public final class MainMenu extends MenuCore {
     private static MainMenu instance = null;
-    private static int MAIN_MENU_LIMIT = 2;
     private boolean isUp = true;
-    private ArrayList<String> mainMenuOptions;
-
-    private MainMenu() {
-        super(MAIN_MENU_LIMIT);
-        mainMenuOptions = intializeMenu();
-    }
-
-    // Menu can be wrote based on separete therad 
-    public void menuRunner() {
-        do {
-            printMenu();
-            char input = takeUserInput();
-            menuControler(input);
-        } while (isUp);
-    }
-
-    protected void printMenu() {
-        for (int i = 0; i < mainMenuOptions.size(); i++) {
-            if (i == pointerPosition)
-                console.writer().print(">");
-            else 
-                console.writer().print(" ");
-            console.writer().print(mainMenuOptions.get(i).toString());  
-            console.flush();
-        }
-    }
 
     public static MainMenu getInstance() {
         if (instance == null) 
@@ -37,16 +10,47 @@ public final class MainMenu extends MenuCore {
         return instance;
     }
 
-
-    private ArrayList<String> intializeMenu() {
-        ArrayList<String> menuOptions = new ArrayList<String>();
-        menuOptions.add("1. Something\n");
-        menuOptions.add("2. Something else\n");
-        menuOptions.add("3. Exit\n");
-        return menuOptions;
+    private MainMenu() {
+        super(MenuConsts.MAIN_MENU_LIMIT);
     }
 
-    protected ArrayList<String> getMainMenuOptions() {
-        return this.mainMenuOptions;
+    // Menu can be wrote based on separete therad 
+    public void menuRunner() {
+        do {
+            printMenu();
+            char input = takeUserInput();
+            boolean action = menuControler(input);
+            if (action)
+                proccessAction();
+        } while (isUp);
     }
+
+    protected void printMenu() {
+        for (int i = 0; i < MenuConsts.MAIN_MENU_OPTIONS.length; i++) {
+            if (i == pointerPosition)
+                console.writer().print(">");
+            else 
+                console.writer().print(" ");
+            console.writer().print(MenuConsts.MAIN_MENU_OPTIONS[i]);  
+            console.flush();
+        }
+    }
+
+    protected void proccessAction() {
+        switch(getPointerPosition()) {
+            case MenuConsts.FETCH_MODUL_DATA-> console.writer().print("Fetch module data\n");
+            case MenuConsts.LOAD_MODULE-> console.writer().print("Load module\n"); 
+            case MenuConsts.UPDATE_MODULE -> console.writer().print("Update module\n");
+            case MenuConsts.DELETE_MODULE -> console.writer().print("Delete module\n");
+            case MenuConsts.EXIT -> isUp = false; 
+        }
+        showConsoleCurrsor(); 
+        console.writer().print("Press Enter to continue...\n");
+        console.flush();
+        proccessInputWithExceptionHandling();
+        clearConsole();
+        console.flush();
+        
+        setPointerPosition(MenuConsts.DEFAULT_POINTER_POSITION);
+    } 
 }

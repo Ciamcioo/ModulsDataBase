@@ -38,8 +38,10 @@ public final class MainMenu extends MenuCore {
 
     protected void proccessAction() {
         switch(getPointerPosition()) {
-            case MenuConsts.SOMETHING -> console.writer().print("Something\n");
-            case MenuConsts.SOMETHING_ELSE -> console.writer().print("Something eles\n");
+            case MenuConsts.FETCH_MODUL_DATA-> console.writer().print("Fetch module data\n");
+            case MenuConsts.LOAD_MODULE-> console.writer().print("Load module\n"); 
+            case MenuConsts.UPDATE_MODULE -> console.writer().print("Update module\n");
+            case MenuConsts.DELETE_MODULE -> console.writer().print("Delete module\n");
             case MenuConsts.EXIT -> isUp = false; 
         }
         showConsoleCurrsor(); 
@@ -49,6 +51,6 @@ public final class MainMenu extends MenuCore {
         clearConsole();
         console.flush();
         
-        setPointerPosition(MenuConsts.DEAFULT_POINTER_POSITION);
+        setPointerPosition(MenuConsts.DEFAULT_POINTER_POSITION);
     } 
 }

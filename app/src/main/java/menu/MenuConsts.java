@@ -1,11 +1,23 @@
 package menu;
 
 public final class MenuConsts {
+
     // Consts for all menu classes
-    protected static final int DEAFULT_POINTER_POSITION = 0;
+    public static final int DEFAULT_POINTER_POSITION = 0;
     // Consts for MainMenu class
-    protected static final int MAIN_MENU_LIMIT = 2;
-    protected static final String[] MAIN_MENU_OPTIONS = {"1. Something\n", "2. Something else\n", "3. Exit\n"};
-    protected static final int SOMETHING = 0, SOMETHING_ELSE = 1,  EXIT = 2;
+    public static final int FETCH_MODUL_DATA = 0;
+    public static final int LOAD_MODULE = 1;
+    public static final int UPDATE_MODULE = 2;
+    public static final int DELETE_MODULE = 3;
+    public static final int EXIT = 4; 
+    public static final int MAIN_MENU_LIMIT = 4;
+    protected static final String[] MAIN_MENU_OPTIONS = {
+                                                         "Modules selects\n",
+                                                         "Load module\n",
+                                                         "Update module\n",
+                                                         "Delete module\n",
+                                                         "Exit\n"
+                                                        };
+
 
 }    
